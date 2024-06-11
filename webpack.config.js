@@ -1,26 +1,32 @@
+const path = require('path');
+
 module.exports = {
+  "mode": "development",
+  "devtool": "inline-source-map",
   "output": {
-    "filename": "[name].pack.js"
+    "publicPath": "public",
+    "filename": "[name].pack.js",
+    "path": path.resolve(__dirname, 'public'),
   },
   "entry": {
-    "index": "./index"
+    "index": "./index.ts"
   },
   "resolve": {
     "extensions": [
+      ".tsx",
       ".ts",
       ".js",
       ".json"
-    ]
+    ],
   },
   "module": {
     "rules": [
       {
-        "use": {
-          "loader": "ts-loader"
-        },
+        "test": /\.ts$/,
+        "use": "ts-loader",
         "exclude": /node_modules/,
-        "test": /\.ts$/
-      }
-    ]
-  }
+        // "include": [path.resolve(__dirname, '')],
+      }
+    ]
+  }
 };
