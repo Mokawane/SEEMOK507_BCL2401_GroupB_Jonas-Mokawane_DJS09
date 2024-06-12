@@ -57,7 +57,7 @@ const properties: {
     code: number;
     country: string;
   };
-  contact: string;
+  contact: [number, string];
   isAvailable: boolean;
 }[] = [
   {
@@ -70,7 +70,7 @@ const properties: {
       code: 322,
       country: "South Africa",
     },
-    contact: "014-518-0144",
+    contact: [+27145180144, "davidgenaro@gmail.com"],
     isAvailable: true,
   },
   {
@@ -83,7 +83,7 @@ const properties: {
       code: 2111,
       country: "South Africa",
     },
-    contact: "011-518-0144",
+    contact: [+27115180144, "suffocatendlovu@gmail.com"],
     isAvailable: true,
   },
   {
@@ -96,7 +96,7 @@ const properties: {
       code: 322,
       country: "South Africa",
     },
-    contact: "014-411-0144",
+    contact: [+27144110144, "taumogale@gmail.com"],
     isAvailable: false,
   },
 ];
