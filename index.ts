@@ -69,7 +69,33 @@ const properties: {
     },
     contact: '014-518-0144',
     isAvailable: true
-  }
+  },
+  {
+    image: 'holder.png',
+    title: 'Johannesburg Hotel',
+    price: 500,
+    location: {
+      firstline: 'Suite 26',
+      city: 'Johannesburg',
+      code: 2111,
+      country: 'South Africa',
+    },
+    contact: '011-518-0144',
+    isAvailable: true
+  },
+  {
+    image: 'holder.png',
+    title: 'Rustenburg Hotel',
+    price: 500,
+    location: {
+      firstline: 'Room 80',
+      city: 'Rustenburg',
+      code: 322,
+      country: 'South Africa',
+    },
+    contact: '014-411-0144',
+    isAvailable: false
+  },
 ];
 
 //Functions
