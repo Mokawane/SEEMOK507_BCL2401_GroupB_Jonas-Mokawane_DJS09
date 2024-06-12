@@ -1,6 +1,7 @@
 const returningUserDisplay = document.querySelector('#returning-user') as HTMLElement;
 const userNameDisplay = document.querySelector('#user') as HTMLElement; 
 const reviewTotalDisplay = document.querySelector('#reviews') as HTMLElement;
+let isOpen: boolean
 
 const reviews = [
   {
@@ -41,12 +42,14 @@ const you: {
     lastName: string;
     isReturning: boolean;
     age: number;
+    stayedAt: string[];
 }
 = {
     firstName: "Bobby",
     lastName: 'Brown',
     isReturning: true,
     age: 35,
+    stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 };
 
 function populateUser(isReturning : boolean, userName : string) {
