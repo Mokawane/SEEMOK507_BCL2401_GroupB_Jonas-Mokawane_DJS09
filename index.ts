@@ -1,9 +1,11 @@
 import { showReviewTotal, populateUser } from "./utils";
-
-let isOpen: boolean;
+import { Permissions } from "./enums";
 
 const propertyContainer = document.querySelector(".properties") as HTMLAreaElement;
 const footer = document.querySelector('.footer') as HTMLAreaElement;
+
+let isOpen: boolean;
+
 //Reviews
 const reviews: {
   name: string;
