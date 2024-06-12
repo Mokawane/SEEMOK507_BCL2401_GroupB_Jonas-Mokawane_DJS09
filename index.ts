@@ -1,5 +1,6 @@
 import { showReviewTotal, populateUser } from "./utils";
 import { Permissions, LoyaltyUser } from "./enums";
+import { Price, Country } from "./typesAlias";
 
 const propertyContainer = document.querySelector(".properties") as HTMLAreaElement;
 const footer = document.querySelector('.footer') as HTMLAreaElement;
@@ -43,12 +44,12 @@ const you = {
 const properties: {
   image: string;
   title: string;
-  price: number;
+  price: Price;
   location: {
     firstline: string;
     city: string;
     code: number;
-    country: string;
+    country: Country;
   };
   contact: [number, string];
   isAvailable: boolean;
