@@ -1,11 +1,16 @@
-import { showReviewTotal, populateUser } from "./utils";
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
 import { Permissions, LoyaltyUser } from "./enums";
 import { Price, Country } from "./typesAlias";
 
-const propertyContainer = document.querySelector(".properties") as HTMLAreaElement;
-const footer = document.querySelector('.footer') as HTMLAreaElement;
+const propertyContainer = document.querySelector(
+  ".properties"
+) as HTMLElement;
+const footer = document.querySelector(".footer") as HTMLElement;
+const reviewContainer = document.querySelector('.reviews') as HTMLElement;
+const container = document.querySelector('.container') as HTMLElement;
+const button = document.querySelector('button') as HTMLElement;
 
-let isLoggedIn: boolean
+let isLoggedIn: boolean;
 
 //Reviews
 const reviews: any[] = [
@@ -26,7 +31,7 @@ const reviews: any[] = [
     stars: 4,
     loyaltyUser: LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
-    description: 'Great hosts, location was a bit further than said'
+    description: "Great hosts, location was a bit further than said",
   },
 ];
 
@@ -99,19 +104,6 @@ const properties: {
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 populateUser(you.isReturning, you.firstName);
 
-let authorityStatus : any
-
-isLoggedIn = true
-
-function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
-  if (authorityStatus) {
-      const priceDisplay = document.createElement('div')
-      priceDisplay.innerHTML = price.toString() + '/night'
-      element.appendChild(priceDisplay)
-  }
-}
-
-
 //Add the properties
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement("div");
@@ -120,9 +112,37 @@ for (let i = 0; i < properties.length; i++) {
   const image = document.createElement("img");
   image.setAttribute("src", properties[i].image);
   card.appendChild(image);
+  showDetails(you.permissions, card, properties[i].price);
   propertyContainer.appendChild(card);
-  showDetails(you.permissions, card, properties[i].price)
 }
 
-let currentLocation: [string, string, number] = ['Rustenburg', '09:19', 14]
-footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
+let count = 0;
+function addReviews(
+  array: {
+    name: string;
+    stars: number;
+    loyaltyUser: LoyaltyUser;
+    date: string;
+  }[]
+): void {
+  if (!count) {
+    count++;
+    const topTwo = getTopTwoReviews(array);
+    for (let i = 0; i < topTwo.length; i++) {
+      const card = document.createElement("div");
+      card.classList.add("review-card");
+      card.innerHTML = topTwo[i].stars + " stars from " + topTwo[i].name;
+      reviewContainer.appendChild(card);
+    }
+    container.removeChild(button);
+  }
+}
+
+let currentLocation: [string, string, number] = ["Rustenburg", "09:19", 14];
+footer.innerHTML =
+  currentLocation[0] +
+  " " +
+  currentLocation[1] +
+  " " +
+  currentLocation[2] +
+  "°";
