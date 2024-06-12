@@ -1,5 +1,8 @@
 import { showReviewTotal, populateUser } from "./utils";
+
 let isOpen: boolean;
+
+const propertyContainer = document.querySelector(".properties") as HTMLAreaElement;
 
 //Reviews
 const reviews: {
@@ -58,43 +61,43 @@ const properties: {
   isAvailable: boolean;
 }[] = [
   {
-    image: 'holder.png',
-    title: 'Rustenburg Lodge',
+    image: "images/Rustenburg-lodge.jpg",
+    title: "Rustenburg Lodge",
     price: 500,
     location: {
-      firstline: 'Building 48',
-      city: 'Rustenburg',
+      firstline: "Building 48",
+      city: "Rustenburg",
       code: 322,
-      country: 'South Africa',
+      country: "South Africa",
     },
-    contact: '014-518-0144',
-    isAvailable: true
+    contact: "014-518-0144",
+    isAvailable: true,
   },
   {
-    image: 'holder.png',
-    title: 'Johannesburg Hotel',
+    image: "images/Johannesburg-hotel.jpg",
+    title: "Johannesburg Hotel",
     price: 500,
     location: {
-      firstline: 'Suite 26',
-      city: 'Johannesburg',
+      firstline: "Suite 26",
+      city: "Johannesburg",
       code: 2111,
-      country: 'South Africa',
+      country: "South Africa",
     },
-    contact: '011-518-0144',
-    isAvailable: true
+    contact: "011-518-0144",
+    isAvailable: true,
   },
   {
-    image: 'holder.png',
-    title: 'Rustenburg Hotel',
+    image: "images/Rustenburg-resort.jpg",
+    title: "Rustenburg Resort",
     price: 500,
     location: {
-      firstline: 'Room 80',
-      city: 'Rustenburg',
+      firstline: "Pilanesburg road",
+      city: "Rustenburg",
       code: 322,
-      country: 'South Africa',
+      country: "South Africa",
     },
-    contact: '014-411-0144',
-    isAvailable: false
+    contact: "014-411-0144",
+    isAvailable: false,
   },
 ];
 
@@ -102,3 +105,14 @@ const properties: {
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 
 populateUser(you.isReturning, you.firstName);
+
+//Add the properties
+for (let i = 0; i < properties.length; i++) {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.innerHTML = properties[i].title;
+  const image = document.createElement("img");
+  image.setAttribute("src", properties[i].image);
+  card.appendChild(image);
+  propertyContainer.appendChild(card);
+}
