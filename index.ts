@@ -3,7 +3,7 @@ import { showReviewTotal, populateUser } from "./utils";
 let isOpen: boolean;
 
 const propertyContainer = document.querySelector(".properties") as HTMLAreaElement;
-
+const footer = document.querySelector('.footer') as HTMLAreaElement;
 //Reviews
 const reviews: {
   name: string;
@@ -116,3 +116,6 @@ for (let i = 0; i < properties.length; i++) {
   card.appendChild(image);
   propertyContainer.appendChild(card);
 }
+
+let currentLocation: [string, string, number] = ['Rustenburg', '09:19', 14]
+footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
