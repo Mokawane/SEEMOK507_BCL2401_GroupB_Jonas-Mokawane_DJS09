@@ -18,12 +18,19 @@ class mainImage {
   reviews:Review[]
   src: string
   title: string
-  constructor(reviews: number, src: string, title: string){
+  constructor(reviews: Review[], src: string, title: string){
     this.reviews = reviews
     this.src = src
     this.title = title
   }
 }
+
+let yourMainImage = new mainImage()
+
+const mainImageContainer = document.querySelector('.main-image')
+const image = document.createElement('img')
+image.setAttribute('src', yourMainImage.src)
+mainImageContainer.appendChild(image)
 
 //Reviews
 const reviews: Review[] = [
