@@ -1,44 +1,17 @@
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
 import { Permissions, LoyaltyUser } from "./enums";
-import { Price, Country } from "./typesAlias";
-import Review from "./interfaces";
+import { Review, Property } from "./interfaces";
+import MainImage from "./public/classes";
 
 const propertyContainer = document.querySelector(
   ".properties"
 ) as HTMLElement;
-const footer = document.querySelector(".footer") as HTMLElement;
 const reviewContainer = document.querySelector('.reviews') as HTMLElement;
 const container = document.querySelector('.container') as HTMLElement;
 const button = document.querySelector('button') as HTMLElement;
+const footer = document.querySelector(".footer") as HTMLElement;
 
 let isLoggedIn: boolean;
-
-// Class
-class mainImage {
-  src: string
-  title: string
-  reviews: Review[]
-  constructor(src: string, title: string, reviews: Review[]) {
-    this.src = src
-    this.title = title
-    this.reviews = reviews
-  }
-}
-
-let yourMainImage = new mainImage('images/Moz-Hotel.jpg',
-  'Mozambican Hotel',
-  [{
-    name: 'Olive',
-    stars: 5,
-    loyaltyUser: LoyaltyUser.GOLD_USER,
-    date: '12-04-2021'
-  }]
-)
-
-const mainImageContainer = document.querySelector('.main-image')
-const image = document.createElement('img')
-image.setAttribute('src', yourMainImage.src)
-mainImageContainer.appendChild(image)
 
 //Reviews
 const reviews: Review[] = [
@@ -71,20 +44,6 @@ const you = {
   age: 35,
   stayedAt: ["florida-home", "oman-flat", "tokyo-bungalow"],
 };
-
-interface Property {
-  image: string;
-  title: string;
-  price: Price;
-  location: {
-    firstLine: string;
-    city: string;
-    code: number | string;
-    country: Country
-  }
-  contact: [number, string];
-  isAvailable: boolean;
-}
 
 //Properties
 const properties: Property[] = [
@@ -185,3 +144,19 @@ footer.innerHTML =
   " " +
   currentLocation[2] +
   "°";
+
+let yourMainImage = new MainImage('images/Moz-Hotel.jpg',
+  'Mozambican Hotel',
+  [{
+    name: 'Olive',
+    stars: 5,
+    loyaltyUser: LoyaltyUser.GOLD_USER,
+    date: '12-04-2021'
+  }]
+)
+
+const mainImageContainer = document.querySelector('.main-image')
+const image = document.createElement('img')
+image.setAttribute('src', yourMainImage.src)
+mainImageContainer.appendChild(image)
+
