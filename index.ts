@@ -1,7 +1,7 @@
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
 import { Permissions, LoyaltyUser } from "./enums";
 import { Price, Country } from "./typesAlias";
-import  Review  from "./interfaces";
+import Review from "./interfaces";
 
 const propertyContainer = document.querySelector(
   ".properties"
@@ -15,17 +15,25 @@ let isLoggedIn: boolean;
 
 // Class
 class mainImage {
-  reviews:Review[]
   src: string
   title: string
-  constructor(reviews: Review[], src: string, title: string){
-    this.reviews = reviews
+  reviews: Review[]
+  constructor(src: string, title: string, reviews: Review[]) {
     this.src = src
     this.title = title
+    this.reviews = reviews
   }
 }
 
-let yourMainImage = new mainImage()
+let yourMainImage = new mainImage('images/Moz-Hotel.jpg',
+  'Mozambican Hotel',
+  [{
+    name: 'Olive',
+    stars: 5,
+    loyaltyUser: LoyaltyUser.GOLD_USER,
+    date: '12-04-2021'
+  }]
+)
 
 const mainImageContainer = document.querySelector('.main-image')
 const image = document.createElement('img')
@@ -64,26 +72,28 @@ const you = {
   stayedAt: ["florida-home", "oman-flat", "tokyo-bungalow"],
 };
 
-//Properties
-const properties: {
+interface Property {
   image: string;
   title: string;
   price: Price;
   location: {
-    firstline: string;
+    firstLine: string;
     city: string;
-    code: number;
-    country: Country;
-  };
+    code: number | string;
+    country: Country
+  }
   contact: [number, string];
   isAvailable: boolean;
-}[] = [
+}
+
+//Properties
+const properties: Property[] = [
   {
     image: "images/Rustenburg-lodge.jpg",
     title: "Rustenburg Lodge",
     price: 500,
     location: {
-      firstline: "Building 48",
+      firstLine: "Building 48",
       city: "Rustenburg",
       code: 322,
       country: "South Africa",
@@ -96,7 +106,7 @@ const properties: {
     title: "Johannesburg Hotel",
     price: 4800,
     location: {
-      firstline: "Suite 26",
+      firstLine: "Suite 26",
       city: "Johannesburg",
       code: 2111,
       country: "South Africa",
@@ -109,7 +119,7 @@ const properties: {
     title: "Rustenburg Resort",
     price: 900,
     location: {
-      firstline: "Pilanesburg road",
+      firstLine: "Pilanesburg road",
       city: "Rustenburg",
       code: 322,
       country: "South Africa",
@@ -117,6 +127,19 @@ const properties: {
     contact: [+27144110144, "taumogale@gmail.com"],
     isAvailable: false,
   },
+  {
+    image: 'images/malaysian-hotel.jpeg',
+    title: 'Malia Hotel',
+    price: 35,
+    location: {
+      firstLine: 'Room 4',
+      city: 'Malia',
+      code: 45334,
+      country: 'Malaysia'
+    },
+    contact: [+60349822083, 'lee34@gmail.com'],
+    isAvailable: false
+  }
 ];
 
 //Functions
