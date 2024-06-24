@@ -1,6 +1,7 @@
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
 import { Permissions, LoyaltyUser } from "./enums";
 import { Price, Country } from "./typesAlias";
+import { Review } from "./interfaces";
 
 const propertyContainer = document.querySelector(
   ".properties"
@@ -13,7 +14,7 @@ const button = document.querySelector('button') as HTMLElement;
 let isLoggedIn: boolean;
 
 //Reviews
-const reviews: any[] = [
+const reviews: Review[] = [
   {
     name: "Sheia",
     stars: 5,
@@ -31,7 +32,6 @@ const reviews: any[] = [
     stars: 4,
     loyaltyUser: LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
-    description: "Great hosts, location was a bit further than said",
   },
 ];
 
@@ -118,12 +118,7 @@ for (let i = 0; i < properties.length; i++) {
 
 let count = 0;
 function addReviews(
-  array: {
-    name: string;
-    stars: number;
-    loyaltyUser: LoyaltyUser;
-    date: string;
-  }[]
+  array: Review[]
 ): void {
   if (!count) {
     count++;
@@ -137,6 +132,8 @@ function addReviews(
     container.removeChild(button);
   }
 }
+
+button.addEventListener('click', () => addReviews(reviews))
 
 let currentLocation: [string, string, number] = ["Rustenburg", "09:19", 14];
 footer.innerHTML =
