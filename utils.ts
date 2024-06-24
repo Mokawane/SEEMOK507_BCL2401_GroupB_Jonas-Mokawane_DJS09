@@ -1,4 +1,4 @@
-import { LoyaltyUser } from "./enums";
+import { LoyaltyUser, Permissions } from "./enums";
 import { Review } from "./interfaces";
 
 const reviewTotalDisplay = document.querySelector("#reviews") as HTMLElement;
@@ -24,7 +24,7 @@ export function showReviewTotal(
 }
 
 export function populateUser(isReturning: boolean, userName: string) {
-  if (isReturning == true) {
+  if (isReturning) {
     returningUserDisplay.innerHTML = "back";
   }
   userNameDisplay.innerHTML = userName;
