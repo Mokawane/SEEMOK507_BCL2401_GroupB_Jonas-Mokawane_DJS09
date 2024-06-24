@@ -13,6 +13,18 @@ const button = document.querySelector('button') as HTMLElement;
 
 let isLoggedIn: boolean;
 
+// Class
+class mainImage {
+  reviews:Review[]
+  src: string
+  title: string
+  constructor(reviews: number, src: string, title: string){
+    this.reviews = reviews
+    this.src = src
+    this.title = title
+  }
+}
+
 //Reviews
 const reviews: Review[] = [
   {
